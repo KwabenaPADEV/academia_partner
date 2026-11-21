@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#260d44">
+  <meta name="description" content="Academia Partner Research Consult provides professional research guidance, academic editing, data analysis and SPSS support.">
+  <title>Academia Partner Research Consult | Research Made Easy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-purple: #3b1764;
+      --deep-purple: #260d44;
+      --accent-yellow: #f3da51;
+      --accent-yellow-hover: #e5c832;
+      --white: #fff;
+      --light-bg: #f8f7fc;
+      --text-dark: #1d1528;
+      --text-muted: #655c70;
+      --border: #ece7f3;
+      --shadow: 0 18px 45px rgba(38, 13, 68, .12);
+      --radius: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .container { width: min(1240px, calc(100% - 48px)); margin: 0 auto; }
+
+    /* Navigation */
+    header {
+      position: fixed; inset: 0 0 auto; z-index: 1000;
+      background: rgba(38, 13, 68, .97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .nav-container {
+      min-height: 76px; display: flex; justify-content: space-between;
+      align-items: center; gap: 24px;
+    }
+    .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--white); }
+    .logo-icon {
+      width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+      background: var(--accent-yellow); color: var(--deep-purple); font-weight: 800; font-size: 1.15rem;
+    }
+    .logo-text h1 { font-size: 1.05rem; line-height: 1.2; font-weight: 800; letter-spacing: .2px; }
+    .logo-text span { display: block; color: var(--accent-yellow); font-size: .68rem; letter-spacing: 1.7px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: .92rem; font-weight: 600; transition: color .2s ease; }
+    .nav-links a:hover { color: var(--accent-yellow); }
+    .nav-links .btn-quote {
+      display: inline-flex; padding: 10px 20px; border-radius: 999px;
+      background: var(--accent-yellow); color: var(--deep-purple);
+    }
+    .nav-links .btn-quote:hover { background: var(--accent-yellow-hover); color: var(--deep-purple); }
+    .hamburger {
+      display: none; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.25);
+      border-radius: 10px; background: transparent; cursor: pointer; padding: 9px;
+    }
+    .hamburger span { display: block; height: 2px; margin: 5px 0; background: white; border-radius: 3px; }
+
+    /* Hero slider */
+    .hero-slider {
+      position: relative; margin-top: 76px; min-height: 650px; overflow: hidden;
+      background: linear-gradient(125deg, var(--deep-purple), var(--primary-purple));
+      color: var(--white);
+    }
+    .slides-wrapper { display: flex; width: 300%; transition: transform .7s cubic-bezier(.25,1,.5,1); }
+    .slide { flex: 0 0 33.333333%; min-height: 650px; display: flex; align-items: center; padding: 68px 24px 86px; }
+    .slide-container {
+      width: min(1240px, 100%); margin: 0 auto; display: grid;
+      grid-template-columns: 1.08fr .92fr; align-items: center; gap: 58px;
+    }
+    .slide-content { max-width: 650px; }
+    .badge {
+      display: inline-block; padding: 7px 15px; margin-bottom: 20px; border-radius: 999px;
+      background: var(--accent-yellow); color: var(--deep-purple); font-size: .8rem; font-weight: 800;
+    }
+    .hero-title { color: white; font-size: clamp(2.35rem, 4.6vw, 4rem); line-height: 1.1; letter-spacing: -1.7px; margin-bottom: 20px; font-weight: 800; }
+    .hero-title span { color: var(--accent-yellow); }
+    .hero-desc { max-width: 580px; color: rgba(255,255,255,.86); font-size: 1.03rem; line-height: 1.8; margin-bottom: 27px; }
+    .hero-checklist { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 18px; margin-bottom: 30px; }
+    .hero-checklist li { display: flex; align-items: center; gap: 10px; color: white; font-size: .92rem; font-weight: 600; }
+    .hero-checklist li::before {
+      content: "✓"; flex: 0 0 22px; width: 22px; height: 22px; display: grid; place-items: center;
+      border-radius: 50%; background: var(--accent-yellow); color: var(--deep-purple); font-size: .75rem; font-weight: 800;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 13px; margin-bottom: 25px; }
+    .btn-primary, .btn-outline {
+      min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; transition: .25s ease;
+    }
+    .btn-primary { background: white; color: var(--deep-purple); }
+    .btn-primary:hover { background: var(--accent-yellow); transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid var(--accent-yellow); color: white; }
+    .btn-outline:hover { background: var(--accent-yellow); color: var(--deep-purple); }
+    .trust-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill { padding: 7px 12px; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; background: rgba(255,255,255,.06); color: white; font-size: .78rem; font-weight: 600; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-width: 0; }
+    .hero-visual img {
+      display: block; width: 100%; max-width: 520px; aspect-ratio: 5 / 4; object-fit: cover;
+      border: 5px solid rgba(255,255,255,.12); border-radius: 22px; box-shadow: 0 24px 55px rgba(0,0,0,.3);
+      background: rgba(255,255,255,.08);
+    }
+    .visual-placeholder {
+      width: 100%; max-width: 520px; min-height: 350px; display: grid; place-items: center;
+      padding: 35px; border: 1px solid rgba(255,255,255,.2); border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.04));
+      box-shadow: 0 24px 55px rgba(0,0,0,.25); text-align: center;
+    }
+    .visual-placeholder .visual-icon { font-size: 4.5rem; margin-bottom: 12px; }
+    .visual-placeholder h3 { font-size: 1.35rem; margin-bottom: 8px; }
+    .visual-placeholder p { color: rgba(255,255,255,.8); max-width: 300px; font-size: .9rem; }
+    .floating-card {
+      position: absolute; bottom: -18px; left: 0; padding: 14px 18px; border-radius: 13px;
+      background: white; color: var(--deep-purple); box-shadow: var(--shadow); font-size: .85rem; font-weight: 800;
+    }
+    .floating-card span { display: block; color: var(--text-muted); font-size: .72rem; font-weight: 600; }
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: rgba(255,255,255,.12);
+      color: white; cursor: pointer; font-size: 1.25rem; transition: .2s;
+    }
+    .slider-arrow:hover { background: var(--accent-yellow); color: var(--deep-purple); }
+    .prev-slide { left: 18px; } .next-slide { right: 18px; }
+    .slider-dots { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 9px; z-index: 5; }
+    .dot { width: 10px; height: 10px; border: 0; border-radius: 99px; background: rgba(255,255,255,.4); cursor: pointer; transition: .25s; }
+    .dot.active { width: 30px; background: var(--accent-yellow); }
+
+    /* Shared sections */
+    .section { padding: 88px 0; }
+    .section-header { max-width: 700px; margin: 0 auto 48px; text-align: center; }
+    .eyebrow { display: inline-block; color: var(--primary-purple); font-size: .78rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .section-header h2 { color: var(--deep-purple); font-size: clamp(1.85rem, 3vw, 2.55rem); line-height: 1.2; margin-bottom: 13px; letter-spacing: -.7px; }
+    .section-header p { color: var(--text-muted); font-size: .98rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+    .service-card {
+      padding: 29px; border: 1px solid var(--border); border-radius: 17px; background: var(--light-bg);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #cbb9df; }
+    .service-icon {
+      width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 18px;
+      border-radius: 13px; background: #eee6f7; color: var(--primary-purple); font-size: 1.35rem;
+    }
+    .service-card h3 { color: var(--primary-purple); font-size: 1.08rem; margin-bottom: 9px; }
+    .service-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.75; }
+
+    /* About */
+    .about-section { background: var(--light-bg); }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 60px; }
+    .about-panel {
+      min-height: 330px; padding: 36px; display: flex; flex-direction: column; justify-content: center;
+      border-radius: 22px; color: white; background: linear-gradient(145deg, var(--deep-purple), var(--primary-purple));
+      box-shadow: var(--shadow);
+    }
+    .about-panel strong { color: var(--accent-yellow); font-size: 3rem; line-height: 1; margin-bottom: 12px; }
+    .about-panel h3 { font-size: 1.4rem; margin-bottom: 10px; }
+    .about-panel p { color: rgba(255,255,255,.82); font-size: .92rem; }
+    .about-copy h2 { color: var(--deep-purple); font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.2; margin-bottom: 17px; }
+    .about-copy p { color: var(--text-muted); margin-bottom: 15px; font-size: .96rem; }
+    .about-points { list-style: none; display: grid; gap: 10px; margin-top: 20px; }
+    .about-points li { color: var(--text-dark); font-weight: 700; font-size: .9rem; }
+    .about-points li::before { content: "✓"; color: #3b1764; font-weight: 900; margin-right: 10px; }
+
+    /* Contact and call to action */
+    .cta-box {
+      margin: 0 auto 78px; padding: 54px 30px; border-radius: 22px; text-align: center;
+      color: white; background: linear-gradient(120deg, var(--deep-purple), var(--primary-purple));
+    }
+    .cta-box h2 { font-size: clamp(1.7rem, 3vw, 2.35rem); margin-bottom: 12px; }
+    .cta-box p { color: rgba(255,255,255,.84); max-width: 680px; margin: 0 auto 24px; }
+    .contact-section { background: var(--light-bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+    .contact-card { padding: 30px; border: 1px solid var(--border); border-radius: 18px; background: white; }
+    .contact-card h3 { color: var(--deep-purple); font-size: 1.2rem; margin-bottom: 10px; }
+    .contact-card p { color: var(--text-muted); font-size: .92rem; margin-bottom: 18px; }
+    .contact-line { display: flex; align-items: center; gap: 12px; margin: 14px 0; color: var(--text-dark); font-weight: 700; font-size: .92rem; }
+    .contact-line span:first-child { width: 38px; height: 38px; display: grid; place-items: center; background: #eee6f7; border-radius: 10px; }
+    .contact-line a { text-decoration: none; }
+    .contact-line a:hover { color: var(--primary-purple); text-decoration: underline; }
+    .qr-wrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    #whatsappQr { width: 170px; height: 170px; padding: 8px; border: 1px solid var(--border); border-radius: 12px; background: white; }
+    .qr-note { max-width: 250px; color: var(--text-muted); font-size: .84rem; }
+    .qr-note strong { display: block; color: var(--deep-purple); margin-bottom: 7px; font-size: .95rem; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .btn-purple {
+      display: inline-flex; justify-content: center; align-items: center; padding: 12px 18px;
+      border: 0; border-radius: 999px; background: var(--primary-purple); color: white;
+      text-decoration: none; font-size: .88rem; font-weight: 800; cursor: pointer;
+    }
+    .btn-purple:hover { background: var(--deep-purple); }
+    .btn-yellow { background: var(--accent-yellow); color: var(--deep-purple); }
+    .btn-yellow:hover { background: var(--accent-yellow-hover); }
+
+    footer { padding: 28px 20px; text-align: center; color: rgba(255,255,255,.75); background: var(--deep-purple); font-size: .84rem; }
+    footer a { color: var(--accent-yellow); text-decoration: none; }
+    .whatsapp-float {
+      position: fixed; right: 22px; bottom: 22px; z-index: 900; width: 56px; height: 56px;
+      display: grid; place-items: center; border-radius: 50%; background: #25d366; color: white;
+      text-decoration: none; font-size: 1.65rem; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      transition: transform .2s ease;
+    }
+    .whatsapp-float:hover { transform: translateY(-4px); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+
+    /* Professional enquiry form */
+    .contact-grid { grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: 28px; align-items: start; }
+    .contact-card { padding: clamp(22px, 3vw, 34px); }
+    .contact-card > h3 { font-size: 1.35rem; margin-bottom: 7px; }
+    .contact-card > p { line-height: 1.7; }
+    .enquiry-form { display: grid; gap: 18px; margin-top: 22px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px 18px; }
+    .form-field { display: grid; gap: 7px; min-width: 0; }
+    .form-field.full-width { grid-column: 1 / -1; }
+    .form-field label, .enquiry-form label { color: var(--deep-purple); font-size: .84rem; font-weight: 800; }
+    .form-field input, .form-field select, .form-field textarea {
+      display: block; width: 100%; min-height: 48px; padding: 12px 14px;
+      border: 1px solid #ded6e9; border-radius: 10px; background: #fff;
+      color: var(--text-dark); font: 500 .9rem/1.5 "Plus Jakarta Sans", sans-serif;
+      outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .form-field textarea { min-height: 132px; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #9a91a5; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: var(--primary-purple); box-shadow: 0 0 0 3px rgba(59, 23, 100, .10);
+    }
+    .form-field input:focus-visible, .form-field select:focus-visible, .form-field textarea:focus-visible { outline: none; }
+    .required-mark { color: #b42318; }
+    .optional { color: #82788d; font-size: .76rem; font-weight: 500; }
+    .enquiry-submit { min-height: 52px; width: 100%; gap: 10px; font-size: .94rem; }
+    .enquiry-submit:disabled { opacity: .7; cursor: wait; }
+    .form-disclaimer { color: var(--text-muted); font-size: .78rem; line-height: 1.65; margin-top: -7px; }
+    .form-status { display: none; padding: 13px 15px; border-radius: 10px; font-size: .86rem; line-height: 1.6; }
+    .form-status.is-visible { display: block; }
+    .form-status.success { color: #17663b; background: #eaf7ef; border: 1px solid #b9e4c8; }
+    .form-status.error { color: #a12622; background: #fff0ef; border: 1px solid #f2c2bf; }
+    .contact-card .qr-wrap { margin-top: 18px; }
+    @media (max-width: 760px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; gap: 15px; }
+      .form-field.full-width { grid-column: auto; }
+    }
+
+    @media (max-width: 980px) {
+      .slide-container { grid-template-columns: 1fr  .85fr; gap: 30px; }
+      .hero-title { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+      .services-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .about-grid { gap: 35px; }
+      .slider-arrow { display: none; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 36px, 600px); }
+      .nav-container { min-height: 70px; }
+      .hamburger { display: block; }
+      .nav-links {
+        position: absolute; top: 70px; left: 0; right: 0; display: none; align-items: stretch;
+        gap: 0; padding: 12px 18px 20px; background: var(--deep-purple);
+        border-top: 1px solid rgba(255,255,255,.1);
+      }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links li a { display: block; padding: 13px 8px; }
+      .nav-links .btn-quote { display: inline-flex; width: fit-content; margin-top: 8px; padding: 10px 18px; }
+      .hero-slider { margin-top: 70px; min-height: auto; }
+      .slide { min-height: auto; padding: 58px 24px 82px; }
+      .slide-container { grid-template-columns: 1fr; text-align: center; gap: 34px; }
+      .slide-content { margin: 0 auto; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-checklist { max-width: 390px; margin-left: auto; margin-right: auto; text-align: left; }
+      .hero-buttons, .trust-pills { justify-content: center; }
+      .hero-visual { max-width: 500px; width: 100%; margin: 0 auto 10px; }
+      .visual-placeholder { min-height: 260px; }
+      .floating-card { left: 8px; }
+      .section { padding: 68px 0; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-panel { min-height: 260px; }
+      .cta-box { margin-bottom: 58px; padding: 42px 22px; }
+    }
+    @media (max-width: 520px) {
+      .logo-text h1 { font-size: .94rem; }
+      .logo-text span { font-size: .6rem; letter-spacing: 1.2px; }
+      .logo-icon { width: 38px; height: 38px; }
+      .hero-title { font-size: 2.25rem; }
+      .hero-checklist { grid-template-columns: 1fr; width: fit-content; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons a { width: 100%; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 25px; }
+      .qr-wrap { align-items: flex-start; }
+      #whatsappQr { width: 145px; height: 145px; }
+      .whatsapp-float { right: 15px; bottom: 15px; width: 52px; height: 52px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+
+    .fa-whatsapp {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="nav-container container">
+      <a href="#home" class="logo" aria-label="Academia Partner home">
+        <img src="academia_logo.png" alt="Academia Partner logo" style="width: 55px; height: 42px; border-radius: 10px;">
+        <div class="logo-text">
+          <h1>Academia Partner</h1>
+          <span>Research Consult</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#quote" class="btn-quote">Get in Touch</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-slider" id="home" aria-label="Academia Partner highlights">
+      <div class="slides-wrapper" id="slidesWrapper">
+        <article class="slide">
+          <div class="slide-container">
+            <div class="slide-content">
+              <span class="badge">Professional Research Writing</span>
+              <h2 class="hero-title">85% Quality.<br><span>15% Discount.</span></h2>
+              <p class="hero-desc">Get expert guidance with your thesis, dissertation, research paper or project report. We help you develop clear, well-structured and properly referenced academic work.</p>
+              <ul class="hero-checklist">
+                <li>Original, well-developed work</li>
+                <li>Thesis and SPSS support</li>
+                <li>Proper academic referencing</li>
+                <li>Timely consultation</li>
+              </ul>
+              <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Send Us a Message <span aria-hidden="true">→</span></a>
+                <a href="#services" class="btn-outline">View Services <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="trust-pills"><span class="pill">Careful editing and referencing</span><span class="pill">Student-focused support</span></div>
+            </div>
+            <div class="hero-visual">
+              <img src="kobby.png" alt="">
+
+              <!------
+              <div class="visual-placeholder">
+                <div>
+                  <div class="visual-icon" aria-hidden="true">📚</div>
+                  <h3>Research Made Easy</h3>
+                  <p>Clear guidance, dependable support and a more confident research journey.</p>
+                </div>
+              </div>
+              -------->
+              <div class="floating-card">Your Research Partner<span>Support from proposal to final review</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="slide-container">
+            <div class="slide-content">
+              <span class="badge">Research and Data Support</span>
+              <h2 class="hero-title">Accurate Data.<br><span>Clear Findings.</span></h2>
+              <p class="hero-desc">Get support with questionnaires, data preparation, statistical analysis and interpretation. We help make your research findings easier to understand and present.</p>
+              <ul class="hero-checklist">
+                <li>Questionnaire development</li>
+                <li>Data coding and cleaning</li>
+                <li>SPSS and statistical support</li>
+                <li>Tables and interpretation</li>
+              </ul>
+              <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Discuss Your Project <span aria-hidden="true">→</span></a>
+                <a href="#services" class="btn-outline">Explore Services <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="trust-pills"><span class="pill">Methodical support</span><span class="pill">Clear explanations</span></div>
+            </div>
+
+            <div class="hero-visual">
+              <img src="kobby.png" alt="">
+            <!-----
+            <div class="visual-placeholder">
+                <div>
+                  <div class="visual-icon" aria-hidden="true">📊</div>
+                  <h3>Data Analysis & SPSS</h3>
+                  <p>Turn research data into organised results and meaningful explanations.</p>
+                </div>
+              </div>
+            ------>
+              <div class="floating-card">Analysis Support<span>From data preparation to reporting</span></div>
+            </div>
+
+          </div>
+        </article>
+
+        <article class="slide">
+          <div class="slide-container">
+            <div class="slide-content">
+              <span class="badge">Your Academic Support Partner</span>
+              <h2 class="hero-title">Your Research Success<br><span>Is Our Priority.</span></h2>
+              <p class="hero-desc">Whether you are preparing a proposal, reviewing literature or polishing a final report, Academia Partner is ready to help you move forward with confidence.</p>
+              <ul class="hero-checklist">
+                <li>Research proposal guidance</li>
+                <li>Literature review support</li>
+                <li>Proofreading and formatting</li>
+                <li>Project report assistance</li>
+              </ul>
+              <div class="hero-buttons">
+                <a href="https://wa.me/233559372521?text=Hello%20Academia%20Partner%2C%20I%20need%20help%20with%20my%20research%20work." class="btn-primary" target="_blank" rel="noopener">Chat on WhatsApp <span aria-hidden="true">→</span></a>
+                <a href="#about" class="btn-outline">Learn About Us <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="trust-pills"><span class="pill">Professional consultation</span><span class="pill">Personalised guidance</span></div>
+            </div>
+            <div class="hero-visual">
+
+              <img src="kobby.png" alt="Kobby">
+              <!-----
+              <div class="visual-placeholder">
+                <div>
+                  <div class="visual-icon" aria-hidden="true">🎓</div>
+                  <h3>Quality You Can Trust</h3>
+                  <p>Practical academic support shaped around your research needs.</p>
+                </div>
+              </div>
+              -------->
+
+              <div class="floating-card">Academia Partner<span>Research Consult</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button class="slider-arrow prev-slide" id="prevBtn" type="button" aria-label="Previous slide">‹</button>
+      <button class="slider-arrow next-slide" id="nextBtn" type="button" aria-label="Next slide">›</button>
+      <div class="slider-dots" aria-label="Choose a slide">
+        <button class="dot active" type="button" data-index="0" aria-label="Slide 1" aria-current="true"></button>
+        <button class="dot" type="button" data-index="1" aria-label="Slide 2"></button>
+        <button class="dot" type="button" data-index="2" aria-label="Slide 3"></button>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">What We Do</span>
+          <h2>Our Research Services</h2>
+          <p>Comprehensive academic and professional research assistance tailored to your institution's requirements and project needs.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon" aria-hidden="true">📘</div><h3>Thesis & Dissertation</h3><p>Guidance with topic development, research structure, chapter organisation, editing and final formatting.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">📊</div><h3>Data Analysis & SPSS</h3><p>Support with data coding, cleaning, statistical testing, tables, charts and interpretation of findings.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">📚</div><h3>Literature Review</h3><p>Help identifying, evaluating and synthesising relevant academic sources with consistent referencing.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">📝</div><h3>Research Proposals</h3><p>Support with researchable topics, problem statements, objectives, questions and methodology design.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">📄</div><h3>Project Reports</h3><p>Assistance with planning, structuring, editing and presenting undergraduate and postgraduate reports.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">✓</div><h3>Proofreading & Formatting</h3><p>Language editing, consistency checks, document formatting and citation-style support.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-----------
+
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <strong>AP</strong>
+          <h3>Research Made Easy</h3>
+          <p>Practical, professional and student-focused research consultation to help you approach academic work with clarity.</p>
+        </div>
+        <div class="about-copy">
+          <span class="eyebrow">About Academia Partner</span>
+          <h2>Your Research Success Is Our Priority</h2>
+          <p>Academia Partner Research Consult provides academic and research support for students and professionals. Our aim is to make the research process clearer through structured guidance, careful editing and practical consultation.</p>
+          <p>From developing a proposal to presenting your findings, we focus on helping you understand your work and communicate it effectively.</p>
+          <ul class="about-points">
+            <li>Clear and practical research guidance</li>
+            <li>Attention to structure, accuracy and presentation</li>
+            <li>Support aligned with your academic instructions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    ----------->
+
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Get in Touch</span>
+          <h2>Let's Discuss Your Research</h2>
+          <p>Tell us what you are working on. Contact Academia Partner to discuss the support you need.</p>
+        </div>
+        <div class="contact-grid">
+
+          <div class="contact-card">
+            <h3>Send an Email Enquiry</h3>
+            <p>Complete the form and your enquiry will be delivered directly to our inbox.</p>
+
+            <form id="enquiryForm" class="enquiry-form" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="studentName">Full name <span class="required-mark">*</span></label>
+                  <input type="text" id="studentName" name="from_name" placeholder="Enter your full name" autocomplete="name" required maxlength="80">
+                </div>
+                <div class="form-field">
+                  <label for="studentEmail">Email address <span class="required-mark">*</span></label>
+                  <input type="email" id="studentEmail" name="from_email" placeholder="you@example.com" autocomplete="email" required maxlength="120">
+                </div>
+                <div class="form-field">
+                  <label for="institution">Institution / school <span class="optional">(optional)</span></label>
+                  <input type="text" id="institution" name="institution" placeholder="Your institution" autocomplete="organization" maxlength="120">
+                </div>
+                <div class="form-field">
+                  <label for="programme">Programme / course <span class="required-mark">*</span></label>
+                  <input type="text" id="programme" name="programme" placeholder="e.g. BSc Public Health" required maxlength="120">
+                </div>
+                <div class="form-field full-width">
+                  <label for="service">What do you need help with? <span class="required-mark">*</span></label>
+                  <select id="service" name="service" required>
+                    <option value="">Select a service</option>
+                    <option>Thesis &amp; Dissertation</option>
+                    <option>Research Proposal</option>
+                    <option>Literature Review</option>
+                    <option>Data Analysis &amp; SPSS</option>
+                    <option>Project Report</option>
+                    <option>Editing &amp; Formatting</option>
+                    <option>Other / Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="topic">Research topic <span class="optional">(if available)</span></label>
+                  <input type="text" id="topic" name="topic" placeholder="Enter your research topic" maxlength="180">
+                </div>
+                <div class="form-field">
+                  <label for="deadline">Expected deadline <span class="optional">(optional)</span></label>
+                  <input type="date" id="deadline" name="deadline">
+                </div>
+                <div class="form-field full-width">
+                  <label for="message">Tell us about your request <span class="required-mark">*</span></label>
+                  <textarea id="message" name="message" rows="5" placeholder="What stage are you at, and what support do you need?" required maxlength="1200"></textarea>
+                </div>
+              </div>
+
+              <button class="btn-purple btn-yellow enquiry-submit" id="submitEnquiry" type="submit">
+                <span class="button-text">Submit Enquiry</span>
+                <span aria-hidden="true">→</span>
+              </button>
+
+              <p class="form-disclaimer">Your enquiry is sent directly from this website to Academia Partner by email. You do not need to open Gmail or another email application. Please do not include passwords or sensitive personal information.</p>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+
+          </div>
+
+
+
+          <div class="contact-card" id="quote">
+            <h3>Scan to Chat on WhatsApp</h3>
+            <p>Scan this QR code with your phone to open a WhatsApp chat with a pre-filled greeting.</p>
+            <div class="qr-wrap">
+              <img id="whatsappQr" alt="WhatsApp QR code for Academia Partner" width="170" height="170">
+              <div class="qr-note">
+                <strong>Start a conversation</strong>
+                The message will read: “Hello Academia Partner, I need help with my research work.”
+              </div>
+            </div>
+            <div class="contact-actions">
+              <a class="btn-purple" href="https://wa.me/233559372521?text=Hello%20Academia%20Partner%2C%20I%20need%20help%20with%20my%20research%20work." target="_blank" rel="noopener">Open WhatsApp</a>
+              <button class="btn-purple btn-yellow" id="copyWhatsApp" type="button">Copy WhatsApp Link</button>
+            </div>
+            <p id="copyStatus" class="sr-only" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Get started">
+      <div class="cta-box">
+        <h2>Ready to Start Your Research Work?</h2>
+        <p>Get in touch today to discuss your research needs and ask about our current 15% discount offer.</p>
+        <a class="btn-primary" href="https://wa.me/233559372521?text=Hello%20Academia%20Partner%2C%20I%20need%20help%20with%20my%20research%20work." target="_blank" rel="noopener">Message +233 559 372 521</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Academia Partner Research Consult. All Rights Reserved. | <a href="https://www.academiapartner.app">www.academiapartner.app</a></p>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/233559372521?text=Hello%20Academia%20Partner%2C%20I%20need%20help%20with%20my%20research%20work." target="_blank" rel="noopener" aria-label="Chat with Academia Partner on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script>
+    "use strict";
+
+    // WhatsApp contact details: country code and number only, with no plus sign or spaces.
+    const whatsappNumber = "233559372521";
+    const greeting = "Hello Academia Partner, I need help with my research work.";
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(greeting)}`;
+
+    // Generate a real QR code from the exact WhatsApp link.
+    // The QR image service receives the encoded destination URL as data.
+    const qrImage = document.getElementById("whatsappQr");
+    if (qrImage) {
+      const qrData = encodeURIComponent(whatsappLink);
+      qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=12&data=${qrData}`;
+      qrImage.onerror = () => {
+        qrImage.alt = "QR code could not load. Use the Open WhatsApp link instead.";
+        qrImage.style.display = "none";
+      };
+    }
+
+    // Mobile navigation
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    function closeMenu() {
+      navLinks.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.setAttribute("aria-label", "Open navigation");
+    }
+
+    hamburger.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+      hamburger.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", event => {
+      if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) closeMenu();
+    });
+
+    // Functional three-slide hero carousel
+    const slidesWrapper = document.getElementById("slidesWrapper");
+    const dots = Array.from(document.querySelectorAll(".dot"));
+    const prevButton = document.getElementById("prevBtn");
+    const nextButton = document.getElementById("nextBtn");
+    const heroSlider = document.querySelector(".hero-slider");
+    let currentSlide = 0;
+    let slideInterval = null;
+    const totalSlides = dots.length;
+
+    function goToSlide(index) {
+      if (!totalSlides) return;
+      currentSlide = (index + totalSlides) % totalSlides;
+      slidesWrapper.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === currentSlide;
+        dot.classList.toggle("active", active);
+        if (active) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    }
+
+    function stopAutoPlay() {
+      if (slideInterval) window.clearInterval(slideInterval);
+      slideInterval = null;
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        slideInterval = window.setInterval(() => goToSlide(currentSlide + 1), 6500);
+      }
+    }
+
+    function resetAutoPlay() {
+      startAutoPlay();
+    }
+
+    nextButton.addEventListener("click", () => { goToSlide(currentSlide + 1); resetAutoPlay(); });
+    prevButton.addEventListener("click", () => { goToSlide(currentSlide - 1); resetAutoPlay(); });
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        goToSlide(Number(dot.dataset.index));
+        resetAutoPlay();
+      });
+    });
+
+    heroSlider.addEventListener("mouseenter", stopAutoPlay);
+    heroSlider.addEventListener("mouseleave", startAutoPlay);
+    heroSlider.addEventListener("focusin", stopAutoPlay);
+    heroSlider.addEventListener("focusout", startAutoPlay);
+
+    // Swipe navigation for touch screens
+    let touchStartX = 0;
+    heroSlider.addEventListener("touchstart", event => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+    heroSlider.addEventListener("touchend", event => {
+      const touchEndX = event.changedTouches[0].screenX;
+      const distance = touchStartX - touchEndX;
+      if (Math.abs(distance) > 50) {
+        goToSlide(currentSlide + (distance > 0 ? 1 : -1));
+        resetAutoPlay();
+      }
+    }, { passive: true });
+
+    // Copy the exact WhatsApp link
+    const copyButton = document.getElementById("copyWhatsApp");
+    const copyStatus = document.getElementById("copyStatus");
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(whatsappLink);
+        copyStatus.textContent = "WhatsApp link copied.";
+        copyButton.textContent = "Link Copied";
+      } catch (error) {
+        copyStatus.textContent = "Copy is unavailable in this browser. Please use the Open WhatsApp button.";
+        copyButton.textContent = "Copy Unavailable";
+      }
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    goToSlide(0);
+    startAutoPlay();
+  </script>
+
+
+
+
+  <script>
+    // Academia Partner enquiry form: sends directly through EmailJS.
+    (() => {
+      const SERVICE_ID = "service_89xvjcj";
+      const TEMPLATE_ID = "template_48gk3uc";
+      const PUBLIC_KEY = "jM6BnOGFgcFXgr0JN";
+
+      const form = document.getElementById("enquiryForm");
+      if (!form) return;
+
+      const status = document.getElementById("formStatus");
+      const submitButton = document.getElementById("submitEnquiry");
+      const buttonText = submitButton.querySelector(".button-text");
+
+      if (!window.emailjs) {
+        status.textContent = "The email service could not load. Please refresh the page and try again.";
+        status.className = "form-status is-visible error";
+        submitButton.disabled = true;
+        return;
+      }
+
+      emailjs.init({ publicKey: PUBLIC_KEY });
+
+      const field = id => document.getElementById(id).value.trim();
+
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+        status.textContent = "";
+        status.className = "form-status";
+
+        // Use the browser's built-in validation and show the first invalid field.
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const email = field("studentEmail");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          status.textContent = "Please enter a valid email address.";
+          status.className = "form-status is-visible error";
+          document.getElementById("studentEmail").focus();
+          return;
+        }
+
+        const templateParams = {
+          from_name: field("studentName"),
+          from_email: email,
+          reply_to: email,
+          institution: field("institution") || "Not provided",
+          programme: field("programme"),
+          service: field("service"),
+          topic: field("topic") || "Not provided",
+          deadline: field("deadline") || "Not specified",
+          message: field("message")
+        };
+
+        submitButton.disabled = true;
+        buttonText.textContent = "Sending Enquiry...";
+        submitButton.setAttribute("aria-busy", "true");
+
+        try {
+          await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+          status.textContent = "Thank you! Your enquiry has been sent successfully. Academia Partner will contact you soon.";
+          status.className = "form-status is-visible success";
+          form.reset();
+        } catch (error) {
+          console.error("EmailJS submission failed:", error);
+          status.textContent = "We could not send your enquiry. Please try again in a moment or email academiapartner05@gmail.com directly.";
+          status.className = "form-status is-visible error";
+        } finally {
+          submitButton.disabled = false;
+          buttonText.textContent = "Submit Enquiry";
+          submitButton.removeAttribute("aria-busy");
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
